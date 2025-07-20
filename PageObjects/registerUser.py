@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
-
 class userRegistration:
     signupLogin_linkText = "Signup / Login"
     textbox_name_xpath = "//input[@name='name']"
@@ -31,6 +30,13 @@ class userRegistration:
     deleteAccount_xpath = " //a[@href='/delete_account']"
     deleteAccountMsg_xpath = "//h2[@class='title text-center']/b"
 
+    # Login Related Locators
+    loginText_xpath = "//*[@id='form']/div/div/div[1]/div/h2"
+    loginEmailAddress_xpath = "//input[@data-qa='login-email']"
+    loginPassword_xpath = "//input[@data-qa='login-password']"
+    loginButton_xpath = "//button[@data-qa='login-button']"
+    logoutButton_xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[4]/a"
+    loginError_xpath = "//*[@id='form']/div/div/div[1]/div/form/p"
 
     def __init__(self,driver):
         self.driver = driver
@@ -124,3 +130,22 @@ class userRegistration:
 
     def deleteAccountMsg(self):
         return self.driver.find_element(By.XPATH, self.deleteAccountMsg_xpath).text
+
+    #Log in related methods
+    def loginText(self):
+       return self.driver.find_element(By.XPATH,self.loginText_xpath).text
+
+    def setLoginEmail(self,email):
+        self.driver.find_element(By.XPATH,self.loginEmailAddress_xpath).send_keys(email)
+
+    def setLoginPassword(self,password):
+        self.driver.find_element(By.XPATH,self.loginPassword_xpath).send_keys(password)
+
+    def clickLogin(self):
+        self.driver.find_element(By.XPATH,self.loginButton_xpath).click()
+
+    def clickLogout(self):
+        self.driver.find_element(By.XPATH,self.logoutButton_xpath).click()
+
+    def loginErrorText(self):
+        return self.driver.find_element(By.XPATH,self.loginError_xpath).text

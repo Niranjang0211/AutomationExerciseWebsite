@@ -8,4 +8,11 @@ class ReadConfig:
     def getApplicationUrl():
         url = config.get('commonInfo', 'baseUrl')
         return url
-
+    @staticmethod
+    def getHomePageTitle():
+        HomePageTitle = config.get("commonInfo","HomePageTitle")
+        return HomePageTitle
+    @staticmethod
+    def getLoginSignupTitle():
+        signup_login_title = config.get("commonInfo","SignupLoginTitle")
+        return signup_login_title
